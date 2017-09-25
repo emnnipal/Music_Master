@@ -16,7 +16,7 @@ class Gallery extends Component {
       audio.play();
       this.setState({
         playing: true,
-        playingUrl:previewUrl,
+        playingUrl: previewUrl,
         audio
       })
     }else{
@@ -27,7 +27,7 @@ class Gallery extends Component {
         })
       } else{
         this.state.audio.pause();
-        audio.play;
+        audio.play();
         this.setState({
           playing: true,
           playingUrl: previewUrl,
