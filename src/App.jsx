@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap'
 import Profile from './Profile';
+import Gallery from './Gallery';
 
 class App extends Component{
   constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component{
     const ALBUM_URL = 'https://api.spotify.com/v1/artists/';
 
     //YOUR ACCESS TOKEN
-    var accessToken = 'BQAuntFAxAaET1YB8KRGIrHJr7MAYbGB2fH29R9xIa1H5RQRBb_cslD_gIBV_Wq78yV7pXbaG4NTzL3C-KFTiYIvOi78DkMK0F7J5nHNE7KJdsw80LzfKMpNFV1qFDeykG7sqwdE_t-HCNgtcH3Vc_dRSk6p-d97xQ'
+    var accessToken = 'BQAFVLUkuxtWVwsIW2u2JOZ-pfTcwHfTy2m5x56NHpwiScLOLkJZKUYOZjA7mCeztGq28vSWtNsd75s4lV2QftUDEsmXlZXUqFPbNG5s6zC0ipNEf5p-vRQuzVlzaRueitpk_pAn0a-c6yKo2kDyZi3IDMnai8pMSA'
 
     var myOptions = {
       method: 'GET',
@@ -75,9 +76,9 @@ class App extends Component{
               <Profile
                 artist={this.state.artist}
               />
-              <div className="Gallery">
-                Gallery
-              </div>
+              <Gallery
+                tracks={this.state.tracks}
+              />
             </div>
           : <div></div>
         }
