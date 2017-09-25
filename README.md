@@ -1,10 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-QUICKSTART
+## QUICKSTART
 1. npm install
 2. [npm start](#npm-start)
 
-TO GET ACCESS TOKEN REFER TO THIS [LINK](http://www.angular-city.com/2017/07/spotify-web-api-access.html)
+## TO GET THE ACCESS TOKEN REFER TO THIS [LINK](http://www.angular-city.com/2017/07/spotify-web-api-access.html)
+Note: Access token has expiration limit. You need to get the access token again.
 _______________________________________________________________________
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).

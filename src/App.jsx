@@ -8,18 +8,19 @@ class App extends Component{
     super(props);
     this.state = {
       query: '',
-      artist: null
+      artist: null,
+      tracks: []
     }
   }
 
   search(){
     console.log('this.state',this.state);
     const BASE_URL = 'https://api.spotify.com/v1/search?'
-    const FETCH_URL = BASE_URL + 'q=' + this.state.query
-                      + '&type=artist&limit=1';
-    console.log(FETCH_URL);
+    let FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
+    const ALBUM_URL = 'https://api.spotify.com/v1/artists/';
 
-    var accessToken = 'BQDjqudt028ERTf-7iBuA7vRchToU0EVtCX1wfqSn3gbwKcvaw2C7ml_HHaK4VUKxSfs3uTfKCu4JqGpdp_eTLgswTk0imJVn2v5zyj1ldBIgitc6qfr9iPVcaxEXnVSW3Fcmjl5QCps0ZHjAriz-pi--8E3SE0KaQ'
+    //YOUR ACCESS TOKEN
+    var accessToken = 'BQAuntFAxAaET1YB8KRGIrHJr7MAYbGB2fH29R9xIa1H5RQRBb_cslD_gIBV_Wq78yV7pXbaG4NTzL3C-KFTiYIvOi78DkMK0F7J5nHNE7KJdsw80LzfKMpNFV1qFDeykG7sqwdE_t-HCNgtcH3Vc_dRSk6p-d97xQ'
 
     var myOptions = {
       method: 'GET',
@@ -34,8 +35,15 @@ class App extends Component{
       .then(response => response.json())
       .then(json => {
         const artist = json.artists.items[0];
-
         this.setState({ artist });
+        FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks?country=PH&`
+        fetch(FETCH_URL, myOptions)
+        .then(response => response.json())
+        .then(json => {
+          console.log('artist/s top tracks:',json);
+          const { tracks } = json;
+          this.setState({tracks});
+        })
       });
   }
 
@@ -61,12 +69,19 @@ class App extends Component{
           </InputGroup.Addon>
           </InputGroup>
         </FormGroup>
-        <Profile
-          artist={this.state.artist}
-        />
-        <div className="Gallery">
-          Gallery
-        </div>
+        {
+          this.state.artist!== null ?
+            <div>
+              <Profile
+                artist={this.state.artist}
+              />
+              <div className="Gallery">
+                Gallery
+              </div>
+            </div>
+          : <div></div>
+        }
+
       </div>
     )
   }
